@@ -35,7 +35,7 @@ inner join {{ ref( 'source_to_source_vocab_map') }} as srctosrcvm
   on
     pr.code = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
-left join {{ ref( 'stg__final_visit_ids') }} as fv
+left join @schema_staging.stg__final_visit_ids as fv
   on pr.encounter = fv.encounter_id
 left join @schema_synthea.synthea_encounters as e
   on

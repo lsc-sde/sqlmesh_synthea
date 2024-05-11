@@ -24,4 +24,4 @@ select
   race_source_concept_id,
   ethnicity_source_value,
   ethnicity_source_concept_id
-from {{ ref('stg__person') }}
+from @schema_staging.stg__person 

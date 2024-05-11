@@ -42,7 +42,7 @@ with snomed_measurements as (
     on
       pr.code = srctosrcvm.source_code
       and srctosrcvm.source_vocabulary_id = 'SNOMED'
-  left join {{ ref ('stg__final_visit_ids') }} as fv
+  left join @schema_staging.stg__final_visit_ids as fv
     on pr.encounter = fv.encounter_id
   left join @schema_synthea.synthea_encounters as e
     on
@@ -105,7 +105,7 @@ loinc_measurements as (
     on
       o.code = srctosrcvm.source_code
       and srctosrcvm.source_vocabulary_id = 'LOINC'
-  left join {{ ref ('stg__final_visit_ids') }} as fv
+  left join @schema_staging.stg__final_visit_ids as fv
     on o.encounter = fv.encounter_id
   left join @schema_synthea.synthea_encounters as e
     on

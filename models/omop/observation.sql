@@ -6,11 +6,11 @@ MODEL (
 );
 
 with all_observations as (
-  select * from {{ ref('stg__observation_allergies') }}
+  select * from @schema_staging.stg__observation_allergies 
   union all
-  select * from {{ ref('stg__observation_conditions') }}
+  select * from @schema_staging.stg__observation_conditions 
   union all
-  select * from {{ ref('stg__observation_observations') }}
+  select * from @schema_staging.stg__observation_observations 
 )
 select
   row_number() over (order by person_id) as observation_id,
@@ -35,9 +35,9 @@ select
     cast(null as bigint) as observation_event_id,
     cast(null as int) as obs_event_field_concept_id
 from all_observations as ao
-  left join {{ ref ('stg__final_visit_ids') }} as fv
+  left join @schema_staging.stg__final_visit_ids as fv
     on ao.encounter = fv.encounter_id
-  left join {{ ref ('stg__encounter_provider') }} as epr
+  left join @schema_staging.stg__encounter_provider as epr
     on
       ao.encounter = epr.id
       and ao.patient = epr.patient

@@ -6,9 +6,9 @@ MODEL (
 );
 
 with all_drugs as (
-  select * from {{ ref('stg__drug_medications') }}
+  select * from @schema_staging.stg__drug_medications 
   union all
-  select * from {{ ref('stg__drug_immunisations') }}
+  select * from @schema_staging.stg__drug_immunisations 
 )
 select
   row_number() over (order by p.person_id) as drug_exposure_id,
@@ -36,7 +36,7 @@ select
   dose_unit_source_value
 from 
   all_drugs as ad
-  left join {{ ref ('stg__final_visit_ids') }} as fv
+  left join @schema_staging.stg__final_visit_ids as fv
     on ad.encounter = fv.encounter_id
   left join @schema_synthea.synthea_encounters as e
     on

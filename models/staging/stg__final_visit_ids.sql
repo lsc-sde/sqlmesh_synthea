@@ -49,7 +49,7 @@ from (
           then 1
         else 99
       end as priority
-    from {{ ref('stg__assign_all_visit_ids') }}
+    from @schema_staging.stg__assign_all_visit_ids 
   ) as t1
 ) as t2
 where rn = 1

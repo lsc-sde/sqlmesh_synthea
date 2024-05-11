@@ -35,7 +35,7 @@ select
       partition by p.person_id
       order by av.visit_start_date
     ) as preceding_visit_occurrence_id
-from {{ ref( 'stg__all_visits') }} as av
+from @schema_staging.stg__all_visits as av
 inner join {{ ref( 'person') }} as p
   on av.patient = p.person_source_value
 inner join @schema_synthea.synthea_encounters as e
@@ -46,5 +46,5 @@ inner join {{ ref( 'provider') }} as pr
   on e.provider = pr.provider_source_value
 where av.visit_occurrence_id in (
   select distinct visit_occurrence_id_new
-  from {{ ref( 'stg__final_visit_ids') }}
+  from @schema_staging.stg__final_visit_ids 
 )
