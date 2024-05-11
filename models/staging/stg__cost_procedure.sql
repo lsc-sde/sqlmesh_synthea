@@ -27,8 +27,8 @@ select distinct
   'UNKNOWN / UNKNOWN' as revenue_code_source_value,
   0 as drg_concept_id,
   '000' as drg_source_value
-from {{ ref ('synthea_procedures') }} as pr
-inner join {{ ref ('synthea_encounters') }} as e
+from @schema_synthea.synthea_procedures as pr
+inner join @schema_synthea.synthea_encounters as e
   on
     pr.encounter = e.id
     and pr.patient = e.patient

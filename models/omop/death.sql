@@ -23,7 +23,7 @@ select
   srctostdvm.target_concept_id as cause_concept_id,
   e.reasoncode as cause_source_value,
   srctostdvm.source_concept_id as cause_source_concept_id
-from {{ ref('synthea_encounters') }} as e
+from @schema_synthea.synthea_encounters as e
 inner join {{ ref('source_to_standard_vocab_map') }} as srctostdvm
   on
     e.reasoncode = srctostdvm.source_code

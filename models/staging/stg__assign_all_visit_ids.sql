@@ -42,7 +42,7 @@ select
         end
       )
   end as visit_occurrence_id_new
-from {{ ref('synthea_encounters') }} as e
+from @schema_synthea.synthea_encounters as e
 inner join {{ ref('stg__all_visits') }} as av
   on
     e.patient = av.patient

@@ -22,7 +22,7 @@ select
   srctosrcvm.source_concept_id as condition_source_concept_id,
   null as condition_status_source_value,
   0 as condition_status_concept_id
-from {{ ref('synthea_conditions') }} as c
+from @schema_synthea.synthea_conditions as c
 inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
   on
     c.code = srctostdvm.source_code
@@ -38,7 +38,7 @@ inner join {{ ref ('source_to_source_vocab_map') }} as srctosrcvm
     and srctosrcvm.source_domain_id = 'Condition'
 left join {{ ref ('stg__final_visit_ids') }} as fv
   on c.encounter = fv.encounter_id
-left join {{ ref('synthea_encounters') }} as e
+left join @schema_synthea.synthea_encounters as e
   on
     c.encounter = e.id
     and c.patient = e.patient

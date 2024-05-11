@@ -22,7 +22,7 @@ select
   pr.code as procedure_source_value,
   srctosrcvm.source_concept_id as procedure_source_concept_id,
   null as modifier_source_value
-from {{ ref( 'synthea_procedures') }} as pr
+from @schema_synthea.synthea_procedures as pr
 inner join {{ ref( 'source_to_standard_vocab_map') }} as srctostdvm
   on
     pr.code = srctostdvm.source_code
@@ -37,7 +37,7 @@ inner join {{ ref( 'source_to_source_vocab_map') }} as srctosrcvm
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
 left join {{ ref( 'stg__final_visit_ids') }} as fv
   on pr.encounter = fv.encounter_id
-left join {{ ref( 'synthea_encounters') }} as e
+left join @schema_synthea.synthea_encounters as e
   on
     pr.encounter = e.id
     and pr.patient = e.patient

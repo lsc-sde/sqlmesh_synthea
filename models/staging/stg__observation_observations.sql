@@ -14,7 +14,7 @@ select
   38000280 as observation_type_concept_id,
   o.code as observation_source_value,
   srctosrcvm.source_concept_id as observation_source_concept_id
-from {{ ref ('synthea_observations') }} as o
+from @schema_synthea.synthea_observations as o
 inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
   on
     o.code = srctostdvm.source_code

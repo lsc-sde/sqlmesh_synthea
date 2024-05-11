@@ -26,7 +26,7 @@ select
   srctosrcvm.source_concept_id as drug_source_concept_id,
   cast(null as varchar(4)) as route_source_value,
   cast(null as varchar(4)) as dose_unit_source_value
-from {{ ref ('synthea_immunizations') }} as i
+from @schema_synthea.synthea_immunizations as i
 inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
   on
     i.code = srctostdvm.source_code

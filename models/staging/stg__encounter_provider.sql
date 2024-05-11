@@ -10,6 +10,6 @@ select
   e.patient,
   e.id,
   pr.provider_id
-from {{ ref ('synthea_encounters') }} as e
+from @schema_synthea.synthea_encounters as e
 inner join {{ ref ('provider') }} as pr
   on e.provider = pr.provider_source_value

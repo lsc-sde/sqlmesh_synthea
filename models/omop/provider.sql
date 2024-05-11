@@ -25,4 +25,4 @@ select
     when 'M' then 8507
     when 'F' then 8532
   end as gender_source_concept_id
-from {{ ref( 'synthea_providers') }}
+from @schema_synthea.synthea_providers 

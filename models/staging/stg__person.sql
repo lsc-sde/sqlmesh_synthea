@@ -36,5 +36,5 @@ select
   0 as race_source_concept_id,
   p.ethnicity as ethnicity_source_value,
   0 as ethnicity_source_concept_id
-from {{ ref('synthea_patients') }} as p
+from @schema_synthea.synthea_patients as p
 where p.gender is not null

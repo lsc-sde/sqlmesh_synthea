@@ -46,7 +46,7 @@ select
 from {{ ref( 'stg__all_visits') }} as av
 inner join {{ ref( 'person') }} as p
   on av.patient = p.person_source_value
-inner join {{ ref ('synthea_encounters') }} as e
+inner join @schema_synthea.synthea_encounters as e
   on
     av.encounter_id = e.id
     and av.patient = e.patient

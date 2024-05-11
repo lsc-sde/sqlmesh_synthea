@@ -13,8 +13,8 @@ with cte as (
       as payer_paid,
     coalesce(sum(case when ct.transfertype = 'p' then ct.amount end), 0)
       as patient_paid
-  from {{ ref ('synthea_conditions') }} as cn
-  inner join {{ ref ('synthea_encounters') }} as e
+  from @schema_synthea.synthea_conditions as cn
+  inner join @schema_synthea.synthea_encounters as e
     on
       cn.encounter = e.id
       and cn.patient = e.patient
@@ -34,7 +34,7 @@ with cte as (
       p.person_id = ppp.person_id
       and co.condition_start_date >= ppp.payer_plan_period_start_date
       and co.condition_start_date <= ppp.payer_plan_period_end_date
-  inner join {{ ref ('synthea_claims') }} as ca
+  inner join @schema_synthea.synthea_claims as ca
     on
       cn.patient = ca.patientid
       and cn.code = ca.diagnosis1
@@ -43,7 +43,7 @@ with cte as (
       and e.provider = ca.providerid
       and e.payer = ca.primarypatientinsuranceid
       and e.start = ca.servicedate
-  inner join {{ ref ('synthea_claims_transactions') }} as ct
+  inner join @schema_synthea.synthea_claims_transactions as ct
     on
       ca.id = ct.claimid
       and cn.patient = ct.patientid

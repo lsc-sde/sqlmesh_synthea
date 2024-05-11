@@ -25,7 +25,7 @@ select
   cast(null as int) as unit_concept_id,
   cast(null as varchar(4)) as unit_source_value,
   cast(null as int) as unit_source_concept_id
-from {{ ref('synthea_devices') }} as d
+from @schema_synthea.synthea_devices as d
 inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
   on
     d.code = srctostdvm.source_code
@@ -40,7 +40,7 @@ inner join {{ ref ('source_to_source_vocab_map') }} as srctosrcvm
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
 left join {{ ref ('stg__final_visit_ids') }} as fv
   on d.encounter = fv.encounter_id
-left join {{ ref('synthea_encounters') }} as e
+left join @schema_synthea.synthea_encounters as e
   on
     d.encounter = e.id
     and d.patient = e.patient

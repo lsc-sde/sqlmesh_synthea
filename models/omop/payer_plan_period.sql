@@ -23,10 +23,10 @@ select
   0 as stop_reason_concept_id,
   cast(NULL as VARCHAR(4)) as stop_reason_source_value,
   0 as stop_reason_source_concept_id
-from {{ ref ('synthea_payers') }} as pay
-inner join {{ ref ('synthea_payer_transitions') }} as pt
+from @schema_synthea.synthea_payers as pay
+inner join @schema_synthea.synthea_payer_transitions as pt
   on pay.id = pt.payer
-inner join {{ ref ('synthea_patients') }} as pat
+inner join @schema_synthea.synthea_patients as pat
   on pt.patient = pat.id
 inner join {{ ref('person') }} as per
   on pat.id = per.person_source_value
