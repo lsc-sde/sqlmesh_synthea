@@ -32,20 +32,20 @@ inner join @schema_synthea.synthea_encounters as e
   on
     pr.encounter = e.id
     and pr.patient = e.patient
-inner join {{ ref ('person') }} as p
+inner join @schema_omop.person as p
   on pr.patient = p.person_source_value
 inner join
-  {{ ref ('visit_occurrence') }}
+  @schema_omop.visit_occurrence 
     as vo
   on
     p.person_id = vo.person_id
     and e.id = vo.visit_source_value
-inner join {{ ref ('procedure_occurrence') }} as po
+inner join @schema_omop.procedure_occurrence as po
   on
     pr.code = po.procedure_source_value
     and vo.visit_occurrence_id = po.visit_occurrence_id
     and vo.person_id = po.person_id
-left join {{ ref ('payer_plan_period') }} as ppp
+left join @schema_omop.payer_plan_period as ppp
   on
     p.person_id = ppp.person_id
     and po.procedure_date >= ppp.payer_plan_period_start_date

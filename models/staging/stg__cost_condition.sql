@@ -18,18 +18,18 @@ with cte as (
     on
       cn.encounter = e.id
       and cn.patient = e.patient
-  inner join {{ ref ('person') }} as p
+  inner join @schema_omop.person as p
     on cn.patient = p.person_source_value
-  inner join {{ ref ('visit_occurrence') }} as vo
+  inner join @schema_omop.visit_occurrence as vo
     on
       p.person_id = vo.person_id
       and e.id = vo.visit_source_value
-  inner join {{ ref ('condition_occurrence') }} as co
+  inner join @schema_omop.condition_occurrence as co
     on
       cn.code = co.condition_source_value
       and vo.visit_occurrence_id = co.visit_occurrence_id
       and vo.person_id = co.person_id
-  left join {{ ref ('payer_plan_period') }} as ppp
+  left join @schema_omop.payer_plan_period as ppp
     on
       p.person_id = ppp.person_id
       and co.condition_start_date >= ppp.payer_plan_period_start_date

@@ -32,18 +32,18 @@ inner join @schema_synthea.synthea_encounters as e
   on
     i.encounter = e.id
     and i.patient = e.patient
-inner join {{ ref ('person') }} as p
+inner join @schema_omop.person as p
   on i.patient = p.person_source_value
-inner join {{ ref ('visit_occurrence') }} as vo
+inner join @schema_omop.visit_occurrence as vo
   on
     p.person_id = vo.person_id
     and e.id = vo.visit_source_value
-inner join {{ ref ('drug_exposure') }} as de
+inner join @schema_omop.drug_exposure as de
   on
     i.code = de.drug_source_value
     and vo.visit_occurrence_id = de.visit_occurrence_id
     and vo.person_id = de.person_id
-left join {{ ref ('payer_plan_period') }} as ppp
+left join @schema_omop.payer_plan_period as ppp
   on
     p.person_id = ppp.person_id
     and de.drug_exposure_start_date >= ppp.payer_plan_period_start_date

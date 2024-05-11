@@ -28,5 +28,5 @@ inner join @schema_synthea.synthea_payer_transitions as pt
   on pay.id = pt.payer
 inner join @schema_synthea.synthea_patients as pat
   on pt.patient = pat.id
-inner join {{ ref('person') }} as per
+inner join @schema_omop.person as per
   on pat.id = per.person_source_value

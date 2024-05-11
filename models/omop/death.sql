@@ -33,6 +33,6 @@ inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     and srctostdvm.source_vocabulary_id = 'SNOMED'
     and srctostdvm.target_standard_concept = 'S'
     and srctostdvm.target_invalid_reason is null
-inner join {{ ref('person') }} as p
+inner join @schema_omop.person as p
   on e.patient = p.person_source_value
 where e.code = '308646001'

@@ -48,9 +48,9 @@ with snomed_measurements as (
     on
       pr.encounter = e.id
       and pr.patient = e.patient
-  left join {{ ref ('provider') }} as prv
+  left join @schema_omop.provider as prv
     on e.provider = prv.provider_source_value
-  inner join {{ ref ('person') }} as p
+  inner join @schema_omop.person as p
     on pr.patient = p.person_source_value
 ),
 
@@ -111,9 +111,9 @@ loinc_measurements as (
     on
       o.encounter = e.id
       and o.patient = e.patient
-  left join {{ ref ('provider') }} as pr
+  left join @schema_omop.provider as pr
     on e.provider = pr.provider_source_value
-  inner join {{ ref ('person') }} as p
+  inner join @schema_omop.person as p
     on o.patient = p.person_source_value
 ),
 

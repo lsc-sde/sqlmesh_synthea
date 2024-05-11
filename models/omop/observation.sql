@@ -41,5 +41,5 @@ from all_observations as ao
     on
       ao.encounter = epr.id
       and ao.patient = epr.patient
-  inner join {{ ref ('person') }} as p
+  inner join @schema_omop.person as p
     on ao.patient = p.person_source_value

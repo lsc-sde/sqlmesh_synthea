@@ -17,7 +17,7 @@ with cteConditionTarget as (
     coalesce(
       nullif(co.condition_end_date, NULL), dateadd(day, 1, condition_start_date)
     ) as condition_end_date
-  from {{ ref ('condition_occurrence') }} as co
+  from @schema_omop.condition_occurrence as co
 /* Depending on the needs of your data, you can put more filters on to your code. We assign 0 to our unmapped condition_concept_id's,
 	 * and since we don't want different conditions put in the same era, we put in the filter below.
  	 */

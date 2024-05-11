@@ -42,7 +42,7 @@ left join @schema_synthea.synthea_encounters as e
   on
     c.encounter = e.id
     and c.patient = e.patient
-left join {{ ref ('provider') }} as pr
+left join @schema_omop.provider as pr
   on e.provider = pr.provider_source_value
-inner join {{ ref ('person') }} as p
+inner join @schema_omop.person as p
   on c.patient = p.person_source_value

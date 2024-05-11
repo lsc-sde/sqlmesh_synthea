@@ -28,7 +28,7 @@ with ctePreDrugTarget as (
       dateadd(day, 1, drug_exposure_start_date)
     ---Add 1 day to the drug_exposure_start_date since there is no end_date or INTERVAL for the days_supply
     ) as drug_exposure_end_date
-  from {{ ref ('drug_exposure') }} as d
+  from @schema_omop.drug_exposure as d
   inner join
     @schema_vocab.concept_ancestor as ca
     on d.drug_concept_id = ca.descendant_concept_id

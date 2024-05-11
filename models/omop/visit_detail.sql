@@ -44,13 +44,13 @@ select
   null as parent_visit_detail_id,
   av.visit_occurrence_id as visit_occurrence_id
 from @schema_staging.stg__all_visits as av
-inner join {{ ref( 'person') }} as p
+inner join @schema_omop.person as p
   on av.patient = p.person_source_value
 inner join @schema_synthea.synthea_encounters as e
   on
     av.encounter_id = e.id
     and av.patient = e.patient
-inner join {{ ref( 'provider') }} as pr
+inner join @schema_omop.provider as pr
   on e.provider = pr.provider_source_value
 where av.visit_occurrence_id in (
   select distinct visit_occurrence_id_new
