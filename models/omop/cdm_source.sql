@@ -18,5 +18,5 @@ select
   '@cdm_version' as cdm_version,
   vocabulary_version as vocabulary_version,
   75626 as cdm_version_concept_id
-from {{ ref('vocabulary') }}
+from @schema_vocab.vocabulary 
 where vocabulary_id = 'None'
