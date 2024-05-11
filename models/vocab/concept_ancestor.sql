@@ -10,4 +10,4 @@ select
   descendant_concept_id,
   min_levels_of_separation,
   max_levels_of_separation
-from {{ source('vocab', 'concept_ancestor') }}
+from @schema_vocab.concept_ancestor

@@ -14,4 +14,4 @@ select
   base_cost,
   reasoncode,
   reasondescription
-from {{ source('synthea', 'procedures') }}
+from @schema_synthea.procedures

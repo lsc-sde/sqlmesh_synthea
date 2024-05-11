@@ -6,4 +6,4 @@ MODEL (
 );
 
 select *
-from {{ source('synthea', 'payer_transitions') }}
+from @schema_synthea.payer_transitions

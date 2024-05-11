@@ -15,4 +15,4 @@ select
   description,
   reasoncode,
   reasondescription
-from {{ source('synthea', 'careplans') }}
+from @schema_synthea.careplans

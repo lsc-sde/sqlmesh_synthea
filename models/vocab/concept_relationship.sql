@@ -12,4 +12,4 @@ select
   valid_start_date,
   valid_end_date,
   invalid_reason
-from {{ source('vocab', 'concept_relationship') }}
+from @schema_vocab.concept_relationship

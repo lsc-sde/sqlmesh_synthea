@@ -15,4 +15,4 @@ select
   valid_start_date,
   valid_end_date,
   invalid_reason
-from {{ source('vocab', 'source_to_concept_map') }}
+from @schema_vocab.source_to_concept_map

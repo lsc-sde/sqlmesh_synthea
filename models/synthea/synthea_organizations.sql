@@ -17,4 +17,4 @@ select
   phone,
   revenue,
   utilization
-from {{ source('synthea', 'organizations') }}
+from @schema_synthea.organizations

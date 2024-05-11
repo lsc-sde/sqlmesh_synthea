@@ -14,4 +14,4 @@ select
   value,
   units,
   type
-from {{ source('synthea', 'observations') }}
+from @schema_synthea.observations

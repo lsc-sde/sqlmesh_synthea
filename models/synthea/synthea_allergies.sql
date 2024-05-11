@@ -12,4 +12,4 @@ select
   encounter,
   cast(code as varchar(50)),
   description
-from {{ source('synthea', 'allergies') }}
+from @schema_synthea.allergies

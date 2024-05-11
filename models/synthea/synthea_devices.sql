@@ -13,4 +13,4 @@ select
   code,
   description,
   udi
-from {{ source('synthea', 'devices') }}
+from @schema_synthea.devices

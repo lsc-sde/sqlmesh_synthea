@@ -19,4 +19,4 @@ select
   SOP_code,
   SOP_description,
   procedure_code
-from {{ source('synthea', 'imaging_studies') }}
+from @schema_synthea.imaging_studies

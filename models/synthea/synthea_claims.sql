@@ -37,4 +37,4 @@ select
   lastbilleddatep,
   healthcareclaimtypeid1,
   healthcareclaimtypeid2
-from {{ source('synthea', 'claims') }}
+from @schema_synthea.claims

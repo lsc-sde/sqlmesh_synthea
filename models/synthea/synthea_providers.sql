@@ -18,4 +18,4 @@ select
   lat,
   lon,
   utilization
-from {{ source('synthea', 'providers') }}
+from @schema_synthea.providers

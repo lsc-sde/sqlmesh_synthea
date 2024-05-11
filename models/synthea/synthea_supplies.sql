@@ -6,4 +6,4 @@ MODEL (
 );
 
 select *
-from {{ source('synthea', 'supplies') }}
+from @schema_synthea.supplies

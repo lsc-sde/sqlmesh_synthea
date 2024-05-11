@@ -9,4 +9,4 @@ select
   concept_id,
   concept_synonym_name,
   language_concept_id
-from {{ source('vocab', 'concept_synonym') }}
+from @schema_vocab.concept_synonym

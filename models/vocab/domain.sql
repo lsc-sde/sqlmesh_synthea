@@ -9,4 +9,4 @@ select
   domain_id,
   domain_name,
   domain_concept_id
-from {{ source('vocab', 'domain') }}
+from @schema_vocab.domain

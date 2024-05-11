@@ -31,4 +31,4 @@ select
   lon,
   healthcare_expenses,
   healthcare_coverage
-from {{ source('synthea', 'patients') }}
+from @schema_synthea.patients

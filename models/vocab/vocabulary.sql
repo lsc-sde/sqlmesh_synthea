@@ -11,4 +11,4 @@ select
   vocabulary_reference,
   vocabulary_version,
   vocabulary_concept_id
-from {{ source('vocab', 'vocabulary') }}
+from @schema_vocab.vocabulary

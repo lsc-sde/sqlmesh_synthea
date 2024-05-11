@@ -12,4 +12,4 @@ select
   cast(code as varchar(50)),
   description,
   base_cost
-from {{ source('synthea', 'immunizations') }}
+from @schema_synthea.immunizations

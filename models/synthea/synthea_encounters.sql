@@ -21,4 +21,4 @@ select
   payer_coverage,
   reasoncode,
   reasondescription
-from {{ source('synthea', 'encounters') }}
+from @schema_synthea.encounters

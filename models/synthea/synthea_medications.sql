@@ -19,4 +19,4 @@ select
   totalcost,
   reasoncode,
   reasondescription
-from {{ source('synthea', 'medications') }}
+from @schema_synthea.medications

@@ -9,4 +9,4 @@ select
   concept_class_id,
   concept_class_name,
   concept_class_concept_id
-from {{ source('vocab', 'concept_class') }}
+from @schema_vocab.concept_class

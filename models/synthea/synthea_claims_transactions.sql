@@ -39,4 +39,4 @@ select
   null as feescheduleid,
   null as providerid,
   null as supervisingproviderid
-{# from {{ source('synthea', 'claims_transactions') }} #}
+{# from @schema_synthea.claims_transactions#}

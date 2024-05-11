@@ -12,4 +12,4 @@ select
   defines_ancestry,
   reverse_relationship_id,
   relationship_concept_id
-from {{ source('vocab', 'relationship') }}
+from @schema_vocab.relationship
