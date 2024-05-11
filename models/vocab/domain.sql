@@ -1,5 +1,12 @@
+
+MODEL (
+  name @schema_omop.domain,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("domain_id") }},
-  {{ adapter.quote("domain_name") }},
-  {{ adapter.quote("domain_concept_id") }}
+  domain_id,
+  domain_name,
+  domain_concept_id
 from {{ source('vocab', 'domain') }}

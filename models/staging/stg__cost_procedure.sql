@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__cost_procedure,
+  kind FULL,
+  cron '@daily'
+);
+
 select distinct
   po.procedure_occurrence_id as cost_event_id,
   'Procedure' as cost_domain_id,

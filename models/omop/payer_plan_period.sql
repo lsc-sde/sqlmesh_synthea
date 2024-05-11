@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.payer_plan_period,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by pat.id, pt.start_year) as payer_plan_period_id,
   per.person_id as person_id,

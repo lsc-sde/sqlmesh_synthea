@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.cdm_source,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   '@cdm_source_name' as cdm_source_name,
   '@cdm_source_abbreviation' as cdm_source_abbreviation,

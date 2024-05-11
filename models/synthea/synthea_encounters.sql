@@ -1,17 +1,24 @@
+
+MODEL (
+  name @schema_synthea.synthea_encounters,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("id") }},
-  {{ adapter.quote("start") }},
-  {{ adapter.quote("stop") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("organization") }},
-  {{ adapter.quote("provider") }},
-  {{ adapter.quote("payer") }},
-  {{ adapter.quote("encounterclass") }},
-  {{ adapter.quote("code") }},
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("base_encounter_cost") }},
-  {{ adapter.quote("total_claim_cost") }},
-  {{ adapter.quote("payer_coverage") }},
-  {{ adapter.quote("reasoncode") }},
-  {{ adapter.quote("reasondescription") }}
+  id,
+  start,
+  stop,
+  patient,
+  organization,
+  provider,
+  payer,
+  encounterclass,
+  code,
+  description,
+  base_encounter_cost,
+  total_claim_cost,
+  payer_coverage,
+  reasoncode,
+  reasondescription
 from {{ source('synthea', 'encounters') }}

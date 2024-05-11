@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__observation_allergies,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   a.patient,
   a.encounter,

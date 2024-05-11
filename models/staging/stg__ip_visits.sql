@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__ip_visits,
+  kind FULL,
+  cron '@daily'
+);
+
 /* inpatient visits */
 /* collapse ip claim lines with <=1 day between them into one visit */
 

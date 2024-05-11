@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.person,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   person_id,
   gender_concept_id,

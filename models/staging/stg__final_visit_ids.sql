@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__final_visit_ids,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   encounter_id,
   visit_occurrence_id_new

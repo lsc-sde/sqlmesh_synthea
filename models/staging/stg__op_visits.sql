@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__op_visits,
+  kind FULL,
+  cron '@daily'
+);
+
 /* outpatient visits */
 
 with cte_visits_distinct as (

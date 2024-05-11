@@ -1,13 +1,20 @@
+
+MODEL (
+  name @schema_synthea.synthea_organizations,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("id") }},
-  {{ adapter.quote("name") }},
-  {{ adapter.quote("address") }},
-  {{ adapter.quote("city") }},
-  {{ adapter.quote("state") }},
-  {{ adapter.quote("zip") }},
-  {{ adapter.quote("lat") }},
-  {{ adapter.quote("lon") }},
-  {{ adapter.quote("phone") }},
-  {{ adapter.quote("revenue") }},
-  {{ adapter.quote("utilization") }}
+  id,
+  name,
+  address,
+  city,
+  state,
+  zip,
+  lat,
+  lon,
+  phone,
+  revenue,
+  utilization
 from {{ source('synthea', 'organizations') }}

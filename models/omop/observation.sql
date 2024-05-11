@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.observation,
+  kind FULL,
+  cron '@daily'
+);
+
 with all_observations as (
   select * from {{ ref('stg__observation_allergies') }}
   union all

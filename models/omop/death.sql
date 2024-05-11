@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.death,
+  kind FULL,
+  cron '@daily'
+);
+
 -- NB:
 -- We observe death records in both the encounters.csv and observations.csv file.
 -- To find the death records in observations, use code = '69453-9'. This is a LOINC code

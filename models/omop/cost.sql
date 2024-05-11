@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.cost,
+  kind FULL,
+  cron '@daily'
+);
+
 with all_costs as (
 
   select * from {{ ref('stg__cost_condition') }}

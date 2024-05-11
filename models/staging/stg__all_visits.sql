@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__all_visits,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   *,
   row_number() over (order by patient) as visit_occurrence_id

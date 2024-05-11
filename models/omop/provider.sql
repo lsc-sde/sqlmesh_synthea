@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.provider,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by (select null)) as provider_id,
   name as provider_name,

@@ -1,10 +1,17 @@
+
+MODEL (
+  name @schema_synthea.synthea_procedures,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("start") }} as date,
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  cast({{ adapter.quote("code") }} as varchar(50)),
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("base_cost") }},
-  {{ adapter.quote("reasoncode") }},
-  {{ adapter.quote("reasondescription") }}
+  start as date,
+  patient,
+  encounter,
+  cast(code as varchar(50)),
+  description,
+  base_cost,
+  reasoncode,
+  reasondescription
 from {{ source('synthea', 'procedures') }}

@@ -1,15 +1,22 @@
+
+MODEL (
+  name @schema_synthea.synthea_medications,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("start") }},
-  {{ adapter.quote("stop") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("payer") }},
-  {{ adapter.quote("encounter") }},
-  cast({{ adapter.quote("code") }} as varchar(50)),
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("base_cost") }},
-  {{ adapter.quote("payer_coverage") }},
-  {{ adapter.quote("dispenses") }},
-  {{ adapter.quote("totalcost") }},
-  {{ adapter.quote("reasoncode") }},
-  {{ adapter.quote("reasondescription") }}
+  start,
+  stop,
+  patient,
+  payer,
+  encounter,
+  cast(code as varchar(50)),
+  description,
+  base_cost,
+  payer_coverage,
+  dispenses,
+  totalcost,
+  reasoncode,
+  reasondescription
 from {{ source('synthea', 'medications') }}

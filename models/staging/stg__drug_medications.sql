@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__drug_medications,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   m.patient,
   m.encounter,

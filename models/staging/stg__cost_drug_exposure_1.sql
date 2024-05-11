@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__cost_drug_exposure_1,
+  kind FULL,
+  cron '@daily'
+);
+
 select distinct
   de.drug_exposure_id as cost_event_id,
   'Drug' as cost_domain_id,

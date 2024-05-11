@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__er_visits,
+  kind FULL,
+  cron '@daily'
+);
+
 /* emergency visits */
 /* collapse er claim lines with no days between them into one visit */
 

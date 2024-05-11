@@ -1,6 +1,13 @@
+
+MODEL (
+  name @schema_omop.concept_ancestor,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("ancestor_concept_id") }},
-  {{ adapter.quote("descendant_concept_id") }},
-  {{ adapter.quote("min_levels_of_separation") }},
-  {{ adapter.quote("max_levels_of_separation") }}
+  ancestor_concept_id,
+  descendant_concept_id,
+  min_levels_of_separation,
+  max_levels_of_separation
 from {{ source('vocab', 'concept_ancestor') }}

@@ -13,8 +13,10 @@ gateways:
                 persistent: './data/sqlmesh_state.duckdb'
         
 variables:
-  src_schema_synthea: synthea
-  src_schema_vocab: vocab
+  schema_synthea: synthea
+  schema_vocab: vocab
+  schema_omop: omop
+  schema_staging: staging
 
 default_gateway: local
 

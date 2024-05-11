@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.drug_era,
+  kind FULL,
+  cron '@daily'
+);
+
 -- Code taken from:
 -- https://github.com/OHDSI/ETL-CMS/blob/master/SQL/create_CDMv5_drug_era_non_stockpile.sql
 

@@ -1,7 +1,14 @@
+
+MODEL (
+  name @schema_omop.vocabulary,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("vocabulary_id") }},
-  {{ adapter.quote("vocabulary_name") }},
-  {{ adapter.quote("vocabulary_reference") }},
-  {{ adapter.quote("vocabulary_version") }},
-  {{ adapter.quote("vocabulary_concept_id") }}
+  vocabulary_id,
+  vocabulary_name,
+  vocabulary_reference,
+  vocabulary_version,
+  vocabulary_concept_id
 from {{ source('vocab', 'vocabulary') }}

@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.visit_occurrence,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   av.visit_occurrence_id,
   p.person_id,

@@ -1,8 +1,15 @@
+
+MODEL (
+  name @schema_synthea.synthea_conditions,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("start") }},
-  {{ adapter.quote("stop") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  cast({{ adapter.quote("code") }} as varchar(50)),
-  {{ adapter.quote("description") }}
+  start,
+  stop,
+  patient,
+  encounter,
+  cast(code as varchar(50)),
+  description
 from {{ source('synthea', 'conditions') }}

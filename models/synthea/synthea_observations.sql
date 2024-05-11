@@ -1,10 +1,17 @@
+
+MODEL (
+  name @schema_synthea.synthea_observations,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("date") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  {{ adapter.quote("code") }},
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("value") }},
-  {{ adapter.quote("units") }},
-  {{ adapter.quote("type") }}
+  date,
+  patient,
+  encounter,
+  code,
+  description,
+  value,
+  units,
+  type
 from {{ source('synthea', 'observations') }}

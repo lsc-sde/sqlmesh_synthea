@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__encounter_provider,
+  kind FULL,
+  cron '@daily'
+);
+
 {# This bit of SQL gets reused several times in the OMOP layer #}
 select
   e.patient,

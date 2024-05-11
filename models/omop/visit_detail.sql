@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.visit_detail,
+  kind FULL,
+  cron '@daily'
+);
+
 -- For testing purposes, create populate VISIT_DETAIL
 -- such that it's basically a copy of VISIT_OCCURRENCE
 

@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__person,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by p.id) as person_id,
   case Upper(p.gender)

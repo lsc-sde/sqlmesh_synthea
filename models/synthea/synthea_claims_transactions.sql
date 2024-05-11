@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_synthea.synthea_claims_transactions,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   null as id,
   null as claimid,

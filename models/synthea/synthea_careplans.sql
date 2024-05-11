@@ -1,11 +1,18 @@
+
+MODEL (
+  name @schema_synthea.synthea_careplans,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("id") }},
-  {{ adapter.quote("start") }},
-  {{ adapter.quote("stop") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  cast({{ adapter.quote("code") }} as varchar(50)),
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("reasoncode") }},
-  {{ adapter.quote("reasondescription") }}
+  id,
+  start,
+  stop,
+  patient,
+  encounter,
+  cast(code as varchar(50)),
+  description,
+  reasoncode,
+  reasondescription
 from {{ source('synthea', 'careplans') }}

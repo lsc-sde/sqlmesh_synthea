@@ -1,9 +1,16 @@
+
+MODEL (
+  name @schema_synthea.synthea_devices,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("start") }},
-  {{ adapter.quote("stop") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  {{ adapter.quote("code") }},
-  {{ adapter.quote("description") }},
-  {{ adapter.quote("udi") }}
+  start,
+  stop,
+  patient,
+  encounter,
+  code,
+  description,
+  udi
 from {{ source('synthea', 'devices') }}

@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.procedure_occurrence,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by p.person_id) as procedure_occurrence_id,
   p.person_id as person_id,

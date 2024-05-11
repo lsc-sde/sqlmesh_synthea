@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__cost_condition,
+  kind FULL,
+  cron '@daily'
+);
+
 with cte as (
   select
     co.condition_occurrence_id,

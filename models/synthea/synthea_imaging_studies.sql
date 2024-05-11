@@ -1,15 +1,22 @@
+
+MODEL (
+  name @schema_synthea.synthea_imaging_studies,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("id") }},
-  {{ adapter.quote("date") }},
-  {{ adapter.quote("patient") }},
-  {{ adapter.quote("encounter") }},
-  {{ adapter.quote("series_uid") }},
-  {{ adapter.quote("bodysite_code") }},
-  {{ adapter.quote("bodysite_description") }},
-  {{ adapter.quote("modality_code") }},
-  {{ adapter.quote("modality_description") }},
-  {{ adapter.quote("instance_uid") }},
-  {{ adapter.quote("SOP_code") }},
-  {{ adapter.quote("SOP_description") }},
-  {{ adapter.quote("procedure_code") }}
+  id,
+  date,
+  patient,
+  encounter,
+  series_uid,
+  bodysite_code,
+  bodysite_description,
+  modality_code,
+  modality_description,
+  instance_uid,
+  SOP_code,
+  SOP_description,
+  procedure_code
 from {{ source('synthea', 'imaging_studies') }}

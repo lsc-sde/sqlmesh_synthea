@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.measurement,
+  kind FULL,
+  cron '@daily'
+);
+
 with snomed_measurements as (
   select
     p.person_id as person_id,

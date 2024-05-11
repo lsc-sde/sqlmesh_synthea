@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.observation_period,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by person_id) as observation_period_id,
   person_id,

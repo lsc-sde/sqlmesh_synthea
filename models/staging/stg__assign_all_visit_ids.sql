@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_staging.stg__assign_all_visit_ids,
+  kind FULL,
+  cron '@daily'
+);
+
 /*assign visit_occurrence_id to all encounters*/
 
 select

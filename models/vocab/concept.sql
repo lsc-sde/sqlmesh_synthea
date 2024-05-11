@@ -1,12 +1,19 @@
+
+MODEL (
+  name @schema_omop.concept,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("concept_id") }},
-  {{ adapter.quote("concept_name") }},
-  {{ adapter.quote("domain_id") }},
-  {{ adapter.quote("vocabulary_id") }},
-  {{ adapter.quote("concept_class_id") }},
-  {{ adapter.quote("standard_concept") }},
-  {{ adapter.quote("concept_code") }},
-  {{ adapter.quote("valid_start_date") }},
-  {{ adapter.quote("valid_end_date") }},
-  {{ adapter.quote("invalid_reason") }}
+  concept_id,
+  concept_name,
+  domain_id,
+  vocabulary_id,
+  concept_class_id,
+  standard_concept,
+  concept_code,
+  valid_start_date,
+  valid_end_date,
+  invalid_reason
 from {{ source('vocab', 'concept') }}

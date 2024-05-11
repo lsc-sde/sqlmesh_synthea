@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.source_to_source_vocab_map,
+  kind FULL,
+  cron '@daily'
+);
+
 {{
   config(
     materialized = 'table',

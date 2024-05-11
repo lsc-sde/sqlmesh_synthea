@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.condition_era,
+  kind FULL,
+  cron '@daily'
+);
+
 -- This script is taken from here:
 -- https://github.com/OHDSI/ETL-CMS/blob/master/SQL/create_CDMv5_condition_era.sql
 

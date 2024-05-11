@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.drug_exposure,
+  kind FULL,
+  cron '@daily'
+);
+
 with all_drugs as (
   select * from {{ ref('stg__drug_medications') }}
   union all

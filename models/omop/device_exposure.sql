@@ -1,3 +1,10 @@
+
+MODEL (
+  name @schema_omop.device_exposure,
+  kind FULL,
+  cron '@daily'
+);
+
 select
   row_number() over (order by person_id) as device_exposure_id,
   p.person_id as person_id,

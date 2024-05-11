@@ -1,8 +1,15 @@
+
+MODEL (
+  name @schema_omop.concept_relationship,
+  kind FULL,
+  cron '@daily'
+);
+
 select
-  {{ adapter.quote("concept_id_1") }},
-  {{ adapter.quote("concept_id_2") }},
-  {{ adapter.quote("relationship_id") }},
-  {{ adapter.quote("valid_start_date") }},
-  {{ adapter.quote("valid_end_date") }},
-  {{ adapter.quote("invalid_reason") }}
+  concept_id_1,
+  concept_id_2,
+  relationship_id,
+  valid_start_date,
+  valid_end_date,
+  invalid_reason
 from {{ source('vocab', 'concept_relationship') }}
