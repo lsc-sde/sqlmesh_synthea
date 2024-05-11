@@ -38,7 +38,7 @@ with snomed_measurements as (
       and srctostdvm.source_vocabulary_id = 'SNOMED'
       and srctostdvm.target_standard_concept = 'S'
       and srctostdvm.target_invalid_reason is null
-  inner join {{ ref ('source_to_source_vocab_map') }} as srctosrcvm
+  inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
     on
       pr.code = srctosrcvm.source_code
       and srctosrcvm.source_vocabulary_id = 'SNOMED'
@@ -101,7 +101,7 @@ loinc_measurements as (
       and srcmap2.target_domain_id = 'Meas value'
       and srcmap2.target_standard_concept = 'S'
       and srcmap2.target_invalid_reason is null
-  left join {{ ref ('source_to_source_vocab_map') }} as srctosrcvm
+  left join @schema_vocab.source_to_source_vocab_map as srctosrcvm
     on
       o.code = srctosrcvm.source_code
       and srctosrcvm.source_vocabulary_id = 'LOINC'

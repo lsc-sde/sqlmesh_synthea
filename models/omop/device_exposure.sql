@@ -34,7 +34,7 @@ inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
     and srctostdvm.source_vocabulary_id = 'SNOMED'
     and srctostdvm.target_standard_concept = 'S'
     and srctostdvm.target_invalid_reason is null
-inner join {{ ref ('source_to_source_vocab_map') }} as srctosrcvm
+inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
     d.code = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'

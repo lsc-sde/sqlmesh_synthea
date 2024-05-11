@@ -27,13 +27,13 @@ select
   c1.concept_class_id as target_concept_class_id,
   c1.invalid_reason as target_invalid_reason,
   c1.standard_concept as target_standard_concept
-from {{ ref( 'concept') }} as c
-inner join {{ ref( 'concept_relationship') }} as cr
+from @schema_vocab.concept as c
+inner join @schema_vocab.concept_relationship as cr
   on
     c.concept_id = cr.concept_id_1
     and cr.invalid_reason is null
     and lower(cr.relationship_id) = 'maps to'
-inner join {{ ref( 'concept') }} as c1
+inner join @schema_vocab.concept as c1
   on
     cr.concept_id_2 = c1.concept_id
     and c1.invalid_reason is null
@@ -55,9 +55,9 @@ select
   c2.concept_class_id as target_concept_class_id,
   c2.invalid_reason as target_invalid_reason,
   c2.standard_concept as target_standard_concept
-from {{ ref( 'source_to_concept_map') }} as stcm
-left outer join {{ ref( 'concept') }} as c1
+from @schema_vocab.source_to_concept_map as stcm
+left outer join @schema_vocab.concept as c1
   on stcm.source_concept_id = c1.concept_id
-left outer join {{ ref( 'concept') }} as c2
+left outer join @schema_vocab.concept as c2
   on stcm.target_concept_id = c2.concept_id
 where stcm.invalid_reason is null

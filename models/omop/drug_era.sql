@@ -30,9 +30,9 @@ with ctePreDrugTarget as (
     ) as drug_exposure_end_date
   from {{ ref ('drug_exposure') }} as d
   inner join
-    {{ ref ('concept_ancestor') }} as ca
+    @schema_vocab.concept_ancestor as ca
     on d.drug_concept_id = ca.descendant_concept_id
-  inner join {{ ref ('concept') }} as c on ca.ancestor_concept_id = c.concept_id
+  inner join @schema_vocab.concept as c on ca.ancestor_concept_id = c.concept_id
   where
     c.vocabulary_id = 'RxNorm' ---8 selects RxNorm from the vocabulary_id
     and c.concept_class_id = 'Ingredient'
