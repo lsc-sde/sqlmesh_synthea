@@ -5,7 +5,7 @@ gateways:
         connection:
             type: duckdb
             catalogs:
-                persistent: './data/synthea.duckdb'
+                persistent: './data/synthea_omop.duckdb'
                 ephemeral: ':memory:'
         state_connection:
             type: duckdb
