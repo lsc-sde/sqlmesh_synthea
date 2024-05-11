@@ -15,7 +15,7 @@ select
   o.code as observation_source_value,
   srctosrcvm.source_concept_id as observation_source_concept_id
 from @schema_synthea.synthea_observations as o
-inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     o.code = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Observation'

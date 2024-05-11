@@ -31,7 +31,7 @@ with snomed_measurements as (
     cast(null as int) as meas_event_field_concept_id
 
   from @schema_synthea.synthea_procedures as pr
-  inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+  inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     on
       pr.code = srctostdvm.source_code
       and srctostdvm.target_domain_id = 'Measurement'
@@ -81,21 +81,21 @@ loinc_measurements as (
     cast(null as int) as meas_event_field_concept_id
 
   from @schema_synthea.synthea_observations as o
-  inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+  inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     on
       o.code = srctostdvm.source_code
       and srctostdvm.target_domain_id = 'Measurement'
       and srctostdvm.source_vocabulary_id = 'LOINC'
       and srctostdvm.target_standard_concept = 'S'
       and srctostdvm.target_invalid_reason is null
-  left join {{ ref ('source_to_standard_vocab_map') }} as srcmap1
+  left join @schema_vocab.source_to_standard_vocab_map as srcmap1
     on
       o.units = srcmap1.source_code
       and srcmap1.target_vocabulary_id = 'UCUM'
       and srcmap1.source_vocabulary_id = 'UCUM'
       and srcmap1.target_standard_concept = 'S'
       and srcmap1.target_invalid_reason is null
-  left join {{ ref ('source_to_standard_vocab_map') }} as srcmap2
+  left join @schema_vocab.source_to_standard_vocab_map as srcmap2
     on
       o.value = srcmap2.source_code
       and srcmap2.target_domain_id = 'Meas value'

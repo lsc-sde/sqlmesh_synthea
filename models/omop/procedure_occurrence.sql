@@ -23,7 +23,7 @@ select
   srctosrcvm.source_concept_id as procedure_source_concept_id,
   null as modifier_source_value
 from @schema_synthea.synthea_procedures as pr
-inner join {{ ref( 'source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     pr.code = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Procedure'

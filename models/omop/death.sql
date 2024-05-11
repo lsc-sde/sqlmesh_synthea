@@ -24,7 +24,7 @@ select
   e.reasoncode as cause_source_value,
   srctostdvm.source_concept_id as cause_source_concept_id
 from @schema_synthea.synthea_encounters as e
-inner join {{ ref('source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     e.reasoncode = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Condition'

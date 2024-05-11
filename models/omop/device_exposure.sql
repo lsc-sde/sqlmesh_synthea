@@ -26,7 +26,7 @@ select
   cast(null as varchar(4)) as unit_source_value,
   cast(null as int) as unit_source_concept_id
 from @schema_synthea.synthea_devices as d
-inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     d.code = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Device'

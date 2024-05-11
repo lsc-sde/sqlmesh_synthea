@@ -23,7 +23,7 @@ select
   null as condition_status_source_value,
   0 as condition_status_concept_id
 from @schema_synthea.synthea_conditions as c
-inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     c.code = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Condition'

@@ -27,7 +27,7 @@ select
   cast(null as varchar(4)) as route_source_value,
   cast(null as varchar(4)) as dose_unit_source_value
 from @schema_synthea.synthea_medications as m
-inner join {{ ref ('source_to_standard_vocab_map') }} as srctostdvm
+inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     m.code = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Drug'
