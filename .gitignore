@@ -1,0 +1,7 @@
+logs/
+output/
+.databricks/
+.env
+.cache/
+data/
+

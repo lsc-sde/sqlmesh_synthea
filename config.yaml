@@ -1,0 +1,22 @@
+project: 'sqlmesh_synthea'
+
+gateways:
+    local:
+        connection:
+            type: duckdb
+            catalogs:
+                persistent: './data/synthea.duckdb'
+                ephemeral: ':memory:'
+        state_connection:
+            type: duckdb
+            catalogs:
+                persistent: './data/sqlmesh_state.duckdb'
+        
+variables:
+  src_schema_synthea: synthea
+  src_schema_vocab: vocab
+
+default_gateway: local
+
+model_defaults:
+    dialect: databricks
