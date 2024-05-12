@@ -30,7 +30,7 @@ with snomed_measurements as (
     cast(null as bigint) as measurement_event_id,
     cast(null as int) as meas_event_field_concept_id
 
-  from @schema_synthea.synthea_procedures as pr
+  from @schema_synthea.procedures as pr
   inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     on
       pr.code = srctostdvm.source_code
@@ -44,7 +44,7 @@ with snomed_measurements as (
       and srctosrcvm.source_vocabulary_id = 'SNOMED'
   left join @schema_staging.stg__final_visit_ids as fv
     on pr.encounter = fv.encounter_id
-  left join @schema_synthea.synthea_encounters as e
+  left join @schema_synthea.encounters as e
     on
       pr.encounter = e.id
       and pr.patient = e.patient
@@ -80,7 +80,7 @@ loinc_measurements as (
     cast(null as bigint) as measurement_event_id,
     cast(null as int) as meas_event_field_concept_id
 
-  from @schema_synthea.synthea_observations as o
+  from @schema_synthea.observations as o
   inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     on
       o.code = srctostdvm.source_code
@@ -107,7 +107,7 @@ loinc_measurements as (
       and srctosrcvm.source_vocabulary_id = 'LOINC'
   left join @schema_staging.stg__final_visit_ids as fv
     on o.encounter = fv.encounter_id
-  left join @schema_synthea.synthea_encounters as e
+  left join @schema_synthea.encounters as e
     on
       o.encounter = e.id
       and o.patient = e.patient

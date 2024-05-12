@@ -15,7 +15,7 @@ with cteConditionTarget as (
     co.condition_concept_id,
     co.condition_start_date,
     coalesce(
-      nullif(co.condition_end_date, NULL), dateadd(day, 1, condition_start_date)
+      nullif(co.condition_end_date, NULL), condition_start_date + INTERVAL 1 DAY
     ) as condition_end_date
   from @schema_omop.condition_occurrence as co
 /* Depending on the needs of your data, you can put more filters on to your code. We assign 0 to our unmapped condition_concept_id's,
@@ -28,7 +28,7 @@ cteEndDates as (
   select
     person_id,
     condition_concept_id,
-    dateadd(day, -30, event_date) as end_date -- unpad the end date
+    event_date - INTERVAL 30 DAY as end_date -- unpad the end date
   from
     (
       select
@@ -58,7 +58,7 @@ cteEndDates as (
           select
             person_id,
             condition_concept_id,
-            dateadd(day, 30, condition_end_date),
+            condition_end_date + INTERVAL 30 DAY,
             1 as event_type,
             NULL
           from cteConditionTarget

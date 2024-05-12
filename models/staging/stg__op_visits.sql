@@ -14,7 +14,7 @@ with cte_visits_distinct as (
     encounterclass,
     start as visit_start_date,
     stop as visit_end_date
-  from @schema_synthea.synthea_encounters 
+  from @schema_synthea.encounters 
   where encounterclass in ('ambulatory', 'wellness', 'outpatient')
   group by patient, encounterclass, start, stop
 )

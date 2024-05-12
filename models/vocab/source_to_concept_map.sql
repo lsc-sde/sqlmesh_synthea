@@ -1,18 +1,18 @@
 
 MODEL (
-  name @schema_omop.source_to_concept_map,
+  name @schema_vocab.source_to_concept_map,
   kind FULL,
   cron '@daily'
 );
 
 select
-  SOURCE_CODE,
-  SOURCE_CONCEPT_ID,
-  SOURCE_VOCABULARY_ID,
-  SOURCE_CODE_DESCRIPTION,
-  TARGET_CONCEPT_ID,
-  TARGET_VOCABULARY_ID,
-  valid_start_date,
-  valid_end_date,
-  invalid_reason
-from @schema_vocab.source_to_concept_map
+  null::varchar as SOURCE_CODE,
+  null as SOURCE_CONCEPT_ID,
+  null as SOURCE_VOCABULARY_ID,
+  null as SOURCE_CODE_DESCRIPTION,
+  null as TARGET_CONCEPT_ID,
+  null as TARGET_VOCABULARY_ID,
+  null as valid_start_date,
+  null as valid_end_date,
+  null as invalid_reason
+{# from @schema_vocab.source_to_concept_map #}

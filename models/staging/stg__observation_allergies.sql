@@ -14,7 +14,7 @@ select
   32827 as observation_type_concept_id,
   a.code as observation_source_value,
   srctosrcvm.source_concept_id as observation_source_concept_id
-from @schema_synthea.synthea_allergies as a
+from @schema_synthea.allergies as a
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
     a.code = srctostdvm.source_code

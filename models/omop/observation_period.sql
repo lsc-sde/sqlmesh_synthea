@@ -17,7 +17,7 @@ from (
     min(e.start) as start_date,
     max(e.stop) as end_date
   from @schema_omop.person as p
-  inner join @schema_synthea.synthea_encounters as e
+  inner join @schema_synthea.encounters as e
     on p.person_source_value = e.patient
   group by p.person_id
 ) as tmp

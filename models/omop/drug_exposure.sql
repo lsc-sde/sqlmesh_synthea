@@ -38,7 +38,7 @@ from
   all_drugs as ad
   left join @schema_staging.stg__final_visit_ids as fv
     on ad.encounter = fv.encounter_id
-  left join @schema_synthea.synthea_encounters as e
+  left join @schema_synthea.encounters as e
     on
       ad.encounter = e.id
       and ad.patient = e.patient

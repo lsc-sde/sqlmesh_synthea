@@ -21,11 +21,11 @@ with ctePreDrugTarget as (
       nullif(drug_exposure_end_date, NULL),
       ---If drug_exposure_end_date != NULL, return drug_exposure_end_date, otherwise go to next case
       nullif(
-        dateadd(day, days_supply, drug_exposure_start_date),
+        drug_exposure_start_date + INTERVAL days_supply,
         drug_exposure_start_date
       ),
       ---If days_supply != NULL or 0, return drug_exposure_start_date + days_supply, otherwise go to next case
-      dateadd(day, 1, drug_exposure_start_date)
+       drug_exposure_start_date + INTERVAL 1 DAY
     ---Add 1 day to the drug_exposure_start_date since there is no end_date or INTERVAL for the days_supply
     ) as drug_exposure_end_date
   from @schema_omop.drug_exposure as d
@@ -168,7 +168,7 @@ cteEndDates (person_id, ingredient_concept_id, end_date) as (
   select
     person_id,
     ingredient_concept_id,
-    dateadd(day, -30, event_date) as end_date
+    event_date - INTERVAL 30 DAY as end_date
   from
     (
       select

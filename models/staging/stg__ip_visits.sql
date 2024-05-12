@@ -12,7 +12,7 @@ with cte_end_dates as (
   select
     patient,
     encounterclass,
-    dateadd(day, -1, event_date) as end_date
+    event_date - INTERVAL 1 DAY as end_date
   from (
     select
       patient,
@@ -38,16 +38,16 @@ with cte_end_dates as (
         row_number() over (
           partition by patient, encounterclass order by start, stop
         ) as start_ordinal
-      from @schema_synthea.synthea_encounters 
+      from @schema_synthea.encounters 
       where encounterclass = 'inpatient'
       union all
       select
         patient,
         encounterclass,
-        dateadd(day, 1, stop),
+        stop + INTERVAL 1 DAY as event_date,
         1 as event_type,
         null
-      from @schema_synthea.synthea_encounters 
+      from @schema_synthea.encounters 
       where encounterclass = 'inpatient'
     ) as rawdata
   ) as e
@@ -61,7 +61,7 @@ cte_visit_ends as (
     v.encounterclass,
     v.start as visit_start_date,
     min(e.end_date) as visit_end_date
-  from @schema_synthea.synthea_encounters as v
+  from @schema_synthea.encounters as v
   inner join cte_end_dates as e
     on
       v.patient = e.patient

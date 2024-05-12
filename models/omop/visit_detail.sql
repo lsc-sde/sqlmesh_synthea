@@ -46,7 +46,7 @@ select
 from @schema_staging.stg__all_visits as av
 inner join @schema_omop.person as p
   on av.patient = p.person_source_value
-inner join @schema_synthea.synthea_encounters as e
+inner join @schema_synthea.encounters as e
   on
     av.encounter_id = e.id
     and av.patient = e.patient

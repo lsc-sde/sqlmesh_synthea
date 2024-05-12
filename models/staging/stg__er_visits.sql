@@ -28,8 +28,8 @@ from (
       cl1.encounterclass,
       cl1.start as visit_start_date,
       cl2.stop as visit_end_date
-    from @schema_synthea.synthea_encounters as cl1
-    inner join @schema_synthea.synthea_encounters as cl2
+    from @schema_synthea.encounters as cl1
+    inner join @schema_synthea.encounters as cl2
       on
         cl1.patient = cl2.patient
         and cl1.start = cl2.start

@@ -1,15 +1,11 @@
 
 MODEL (
-  name @schema_omop.source_to_standard_vocab_map,
+  name @schema_vocab.source_to_standard_vocab_map,
   kind FULL,
   cron '@daily'
 );
 
-{{
-  config(
-    materialized = 'table',
-    )
-}}
+with cte as (
 select
   c.concept_code as source_code,
   c.concept_id as source_concept_id,
@@ -61,3 +57,23 @@ left outer join @schema_vocab.concept as c1
 left outer join @schema_vocab.concept as c2
   on stcm.target_concept_id = c2.concept_id
 where stcm.invalid_reason is null
+)
+select 
+  source_code::varchar,
+  source_concept_id::BIGINT,
+  source_code_description::varchar,
+  source_vocabulary_id::varchar,
+  source_domain_id::varchar,
+  source_concept_class_id::varchar,
+  source_valid_start_date,
+  source_valid_end_date,
+  source_invalid_reason::varchar,
+  target_concept_id::BIGINT,
+  target_concept_name::varchar,
+  target_vocabulary_id::varchar,
+  target_domain_id::varchar,
+  target_concept_class_id::varchar,
+  target_invalid_reason::varchar,
+  target_standard_concept::varchar
+from 
+  cte

@@ -13,8 +13,8 @@ select
   'https://synthetichealth.github.io/synthea/'
     as source_documentation_reference,
   'https://github.com/OHDSI/ETL-Synthea' as cdm_etl_reference,
-  getdate() as source_release_date,
-  getdate() as cdm_release_date,
+  today() as source_release_date,
+  today() as cdm_release_date,
   '@cdm_version' as cdm_version,
   vocabulary_version as vocabulary_version,
   75626 as cdm_version_concept_id
