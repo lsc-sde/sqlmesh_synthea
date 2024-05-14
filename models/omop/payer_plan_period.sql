@@ -6,10 +6,10 @@ MODEL (
 );
 
 select
-  row_number() over (order by pat.id, pt.start_year) as payer_plan_period_id,
+  row_number() over (order by pat.id, pt.start_date) as payer_plan_period_id,
   per.person_id as person_id,
-  cast(concat(cast(pt.start_year as varchar(4)), '01','01') as DATE) as payer_plan_period_start_date,
-  cast(concat(cast(pt.end_year as varchar(4)), '12','31') as DATE) as payer_plan_period_end_date,
+  try_cast(pt.start_date as timestamp) as payer_plan_period_start_date,
+  try_cast(pt.end_date as timestamp) as payer_plan_period_end_date,
   0 as payer_concept_id,
   pt.payer as payer_source_value,
   0 as payer_source_concept_id,
