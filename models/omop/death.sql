@@ -7,11 +7,9 @@ MODEL (
 
 -- NB:
 -- We observe death records in both the encounters.csv and observations.csv file.
--- To find the death records in observations, use code = '69453-9'. This is a LOINC code
 -- that represents an observation of the US standard certificate of death.  To find the
 -- corresponding cause of death, we would need to join to conditions on patient and description
 -- (specifically conditions.description = observations.value).  Instead, we can use the encounters table.
--- Encounters.code = '308646001' is the SNOMED observation of death certification.
 -- The reasoncode column is the SNOMED code for the condition that caused death, so by using encounters
 -- we get both the code for the death certification and the corresponding cause of death.
 
@@ -26,7 +24,7 @@ select
 from @schema_synthea.encounters as e
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    e.reasoncode = srctostdvm.source_code
+    e.reasoncode::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Condition'
     and srctostdvm.source_domain_id = 'Condition'
     and srctostdvm.target_vocabulary_id = 'SNOMED'
@@ -35,4 +33,4 @@ inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     and srctostdvm.target_invalid_reason is null
 inner join @schema_omop.person as p
   on e.patient = p.person_source_value
-where e.code = '308646001'
+where e.code::varchar = '308646001'

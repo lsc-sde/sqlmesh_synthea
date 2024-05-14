@@ -40,7 +40,7 @@ inner join @schema_omop.visit_occurrence as vo
     and e.id = vo.visit_source_value
 inner join @schema_omop.drug_exposure as de
   on
-    m.code = de.drug_source_value
+    m.code::varchar = de.drug_source_value
     and vo.visit_occurrence_id = de.visit_occurrence_id
     and vo.person_id = de.person_id
 left join @schema_omop.payer_plan_period as ppp

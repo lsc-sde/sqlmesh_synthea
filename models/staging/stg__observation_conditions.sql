@@ -17,13 +17,13 @@ select
 from @schema_synthea.conditions as c
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    c.code = srctostdvm.source_code
+    c.code::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Observation'
     and srctostdvm.target_vocabulary_id = 'SNOMED'
     and srctostdvm.target_standard_concept = 'S'
     and srctostdvm.target_invalid_reason is null
 inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
-    c.code = srctosrcvm.source_code
+    c.code::varchar = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
     and srctosrcvm.source_domain_id = 'Observation'

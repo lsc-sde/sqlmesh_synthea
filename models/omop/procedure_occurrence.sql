@@ -25,7 +25,7 @@ select
 from @schema_synthea.procedures as pr
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    pr.code = srctostdvm.source_code
+    pr.code::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Procedure'
     and srctostdvm.target_vocabulary_id = 'SNOMED'
     and srctostdvm.source_vocabulary_id = 'SNOMED'
@@ -33,7 +33,7 @@ inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     and srctostdvm.target_invalid_reason is null
 inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
-    pr.code = srctosrcvm.source_code
+    pr.code::varchar = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
 left join @schema_staging.stg__final_visit_ids as fv
   on pr.encounter = fv.encounter_id

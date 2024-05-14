@@ -29,12 +29,12 @@ select
 from @schema_synthea.immunizations as i
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    i.code = srctostdvm.source_code
+    i.code::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Drug'
     and srctostdvm.target_vocabulary_id = 'CVX'
     and srctostdvm.target_standard_concept = 'S'
     and srctostdvm.target_invalid_reason is null
 inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
-    i.code = srctosrcvm.source_code
+    i.code::varchar = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'CVX'

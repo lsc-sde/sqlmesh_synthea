@@ -28,7 +28,7 @@ select
 from @schema_synthea.devices as d
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    d.code = srctostdvm.source_code
+    d.code::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Device'
     and srctostdvm.target_vocabulary_id = 'SNOMED'
     and srctostdvm.source_vocabulary_id = 'SNOMED'
@@ -36,7 +36,7 @@ inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
     and srctostdvm.target_invalid_reason is null
 inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
-    d.code = srctosrcvm.source_code
+    d.code::varchar = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
 left join @schema_staging.stg__final_visit_ids as fv
   on d.encounter = fv.encounter_id

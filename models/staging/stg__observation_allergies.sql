@@ -17,13 +17,13 @@ select
 from @schema_synthea.allergies as a
 inner join @schema_vocab.source_to_standard_vocab_map as srctostdvm
   on
-    a.code = srctostdvm.source_code
+    a.code::varchar = srctostdvm.source_code
     and srctostdvm.target_domain_id = 'Observation'
     and srctostdvm.target_vocabulary_id = 'SNOMED'
     and srctostdvm.target_standard_concept = 'S'
     and srctostdvm.target_invalid_reason is null
 inner join @schema_vocab.source_to_source_vocab_map as srctosrcvm
   on
-    a.code = srctosrcvm.source_code
+    a.code::varchar = srctosrcvm.source_code
     and srctosrcvm.source_vocabulary_id = 'SNOMED'
     and srctosrcvm.source_domain_id = 'Observation'

@@ -26,7 +26,7 @@ with cte as (
       and e.id = vo.visit_source_value
   inner join @schema_omop.condition_occurrence as co
     on
-      cn.code = co.condition_source_value
+      cn.code::varchar = co.condition_source_value
       and vo.visit_occurrence_id = co.visit_occurrence_id
       and vo.person_id = co.person_id
   left join @schema_omop.payer_plan_period as ppp
@@ -37,7 +37,7 @@ with cte as (
   inner join @schema_synthea.claims as ca
     on
       cn.patient = ca.patientid
-      and cn.code = ca.diagnosis1
+      and cn.code::varchar = ca.diagnosis1
       and cn.start = ca.currentillnessdate
       and e.id = ca.appointmentid
       and e.provider = ca.providerid

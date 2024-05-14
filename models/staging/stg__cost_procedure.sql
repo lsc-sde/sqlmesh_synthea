@@ -42,7 +42,7 @@ inner join
     and e.id = vo.visit_source_value
 inner join @schema_omop.procedure_occurrence as po
   on
-    pr.code = po.procedure_source_value
+    pr.code::varchar = po.procedure_source_value
     and vo.visit_occurrence_id = po.visit_occurrence_id
     and vo.person_id = po.person_id
 left join @schema_omop.payer_plan_period as ppp
