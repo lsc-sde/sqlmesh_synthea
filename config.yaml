@@ -11,13 +11,21 @@ gateways:
             type: duckdb
             catalogs:
                 persistent: './data/sqlmesh_state.duckdb'
+        variables:
+            metadata:
+                cdm_source_name: 'Synthea DuckDb'
+                cdm_source_abbreviation: 'Synthea_Duck'
+                cdm_holder: 'vvcb'
+                source_description: 'OMOP 5.4 CDM from Synthea using SQLMesh'
+                cdm_version: '5.4'
         
 variables:
-  schema_synthea: synthea
-  schema_vocab: vocab
-  schema_omop: omop
-  schema_staging: staging
-
+    schema_synthea: synthea
+    schema_vocab: vocab
+    schema_omop: omop
+    schema_staging: staging
+    catalog_staging: ephemeral
+    
 default_gateway: local
 
 model_defaults:
