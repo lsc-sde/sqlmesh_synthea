@@ -20,7 +20,7 @@ Please do not hesistate to fork, create a PR, raise an issue or get involved in 
 
 ## Related projects:
 
-___DISCLAIMER: The following are all pre-alpha proof-of-concepts with absolutely no guarantees. In fact, running any of these in your data warehouse without guardrails may try to kill your cat. Read more about guardrails [here](https://en.m.wikipedia.org/wiki/Guard_rail).
+___DISCLAIMER: The following are all pre-alpha proof-of-concepts with absolutely no guarantees. In fact, running any of these in your data warehouse without guardrails may try to kill your cat. Read more about guardrails [here](https://en.m.wikipedia.org/wiki/Guard_rail).___
 
 ### SQLMesh
 
